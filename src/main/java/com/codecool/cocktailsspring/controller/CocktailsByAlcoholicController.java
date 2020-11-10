@@ -1,7 +1,7 @@
 package com.codecool.cocktailsspring.controller;
 
 import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
-import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItem;
+import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ public class CocktailsByAlcoholicController {
     CocktailAPIService cocktailAPIService;
 
     @GetMapping("/{alcoholic}")
-    public ListOfDrinksItem getCocktailsBySpirit(@PathVariable("alcoholic") Alcoholic alcoholic){
+    public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("alcoholic") Alcoholic alcoholic){
         return cocktailAPIService.getCocktailsByAlcoholic(alcoholic);
     }
 }
