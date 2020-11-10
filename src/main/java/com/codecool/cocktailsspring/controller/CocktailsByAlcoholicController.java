@@ -13,7 +13,7 @@ public class CocktailsByAlcoholicController {
     @Autowired
     CocktailAPIService cocktailAPIService;
 
-    @GetMapping("/{alcoholic}")
+    @GetMapping("/filter/{alcoholic}")
     public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("alcoholic") Alcoholic alcoholic){
         return cocktailAPIService.getCocktailsByAlcoholic(alcoholic);
     }
