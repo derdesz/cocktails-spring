@@ -47,7 +47,7 @@ public class DrinksItem{
 	private String strCreativeCommonsConfirmed;
 
 	@JsonProperty("strIBA")
-	private Object strIBA;
+	private String strIBA;
 
 	@JsonProperty("strDrinkES")
 	private Object strDrinkES;
@@ -56,7 +56,7 @@ public class DrinksItem{
 	private Object strVideo;
 
 	@JsonProperty("strTags")
-	private Object strTags;
+	private String strTags;
 
 	@JsonProperty("strInstructions")
 	private String strInstructions;
@@ -71,16 +71,16 @@ public class DrinksItem{
 	private String strIngredient2;
 
 	@JsonProperty("strIngredient5")
-	private String strIngredient5;
+	private Object strIngredient5;
 
 	@JsonProperty("strIngredient4")
 	private String strIngredient4;
 
 	@JsonProperty("strIngredient7")
-	private String strIngredient7;
+	private Object strIngredient7;
 
 	@JsonProperty("strIngredient6")
-	private String strIngredient6;
+	private Object strIngredient6;
 
 	@JsonProperty("strIngredient9")
 	private Object strIngredient9;
@@ -89,7 +89,7 @@ public class DrinksItem{
 	private Object strInstructionsFR;
 
 	@JsonProperty("strIngredient8")
-	private String strIngredient8;
+	private Object strIngredient8;
 
 	@JsonProperty("idDrink")
 	private String idDrink;
@@ -131,7 +131,7 @@ public class DrinksItem{
 	private Object strMeasure9;
 
 	@JsonProperty("strMeasure7")
-	private String strMeasure7;
+	private Object strMeasure7;
 
 	@JsonProperty("strMeasure8")
 	private Object strMeasure8;
@@ -146,7 +146,7 @@ public class DrinksItem{
 	private String strMeasure3;
 
 	@JsonProperty("strMeasure4")
-	private String strMeasure4;
+	private Object strMeasure4;
 
 	@JsonProperty("strMeasure1")
 	private String strMeasure1;
@@ -219,7 +219,7 @@ public class DrinksItem{
 		return strCreativeCommonsConfirmed;
 	}
 
-	public Object getStrIBA(){
+	public String getStrIBA(){
 		return strIBA;
 	}
 
@@ -231,7 +231,7 @@ public class DrinksItem{
 		return strVideo;
 	}
 
-	public Object getStrTags(){
+	public String getStrTags(){
 		return strTags;
 	}
 
@@ -251,7 +251,7 @@ public class DrinksItem{
 		return strIngredient2;
 	}
 
-	public String getStrIngredient5(){
+	public Object getStrIngredient5(){
 		return strIngredient5;
 	}
 
@@ -259,11 +259,11 @@ public class DrinksItem{
 		return strIngredient4;
 	}
 
-	public String getStrIngredient7(){
+	public Object getStrIngredient7(){
 		return strIngredient7;
 	}
 
-	public String getStrIngredient6(){
+	public Object getStrIngredient6(){
 		return strIngredient6;
 	}
 
@@ -275,7 +275,7 @@ public class DrinksItem{
 		return strInstructionsFR;
 	}
 
-	public String getStrIngredient8(){
+	public Object getStrIngredient8(){
 		return strIngredient8;
 	}
 
@@ -331,7 +331,7 @@ public class DrinksItem{
 		return strMeasure9;
 	}
 
-	public String getStrMeasure7(){
+	public Object getStrMeasure7(){
 		return strMeasure7;
 	}
 
@@ -351,7 +351,7 @@ public class DrinksItem{
 		return strMeasure3;
 	}
 
-	public String getStrMeasure4(){
+	public Object getStrMeasure4(){
 		return strMeasure4;
 	}
 
