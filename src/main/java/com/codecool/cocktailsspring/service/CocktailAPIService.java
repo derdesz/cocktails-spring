@@ -1,7 +1,7 @@
 package com.codecool.cocktailsspring.service;
 
-import com.codecool.cocktailsspring.model.byspirit.CocktailsBySpirit;
-import com.codecool.cocktailsspring.model.byspirit.Spirit;
+import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItem;
+import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,14 @@ public class CocktailAPIService {
     @Value("${cocktailsBySpirit.url}")
     private String cocktailsBySpiritURL ;
 
-    public CocktailsBySpirit getCocktailsBySpirit(Spirit spirit) {
+
+    @Value("${filterCocktailsAlcoholic.url}")
+    private String cocktailsAlcoholicURL ;
+
+    public ListOfDrinksItem getCocktailsBySpirit(Spirit spirit) {
         RestTemplate template = new RestTemplate();
-        ResponseEntity<CocktailsBySpirit> cocktailsResponseEntity =
-                template.exchange(cocktailsBySpiritURL + spirit, HttpMethod.GET, null, CocktailsBySpirit.class);
+        ResponseEntity<ListOfDrinksItem> cocktailsResponseEntity =
+                template.exchange(cocktailsBySpiritURL + spirit, HttpMethod.GET, null, ListOfDrinksItem.class);
         return cocktailsResponseEntity.getBody();
     }
 

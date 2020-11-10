@@ -1,4 +1,4 @@
-package com.codecool.cocktailsspring.model.byspirit;
+package com.codecool.cocktailsspring.model.listofcocktails;
 
 public enum Spirit {
     GIN,
