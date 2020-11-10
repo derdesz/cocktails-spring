@@ -1,7 +1,5 @@
 package com.codecool.cocktailsspring.controller;
 
-import com.codecool.cocktailsspring.model.byspirit.CocktailsBySpirit;
-import com.codecool.cocktailsspring.model.byspirit.Spirit;
 import com.codecool.cocktailsspring.model.detailedcocktail.DetailedCocktail;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
