@@ -1,5 +1,6 @@
 package com.codecool.cocktailsspring.service;
 
+import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
 import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItem;
 import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,4 +26,10 @@ public class CocktailAPIService {
         return cocktailsResponseEntity.getBody();
     }
 
+    public ListOfDrinksItem getCocktailsByAlcoholic(Alcoholic alcoholic) {
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<ListOfDrinksItem> cocktailsResponseEntity =
+                template.exchange(cocktailsAlcoholicURL + alcoholic, HttpMethod.GET, null, ListOfDrinksItem.class);
+        return cocktailsResponseEntity.getBody();
+    }
 }
