@@ -14,7 +14,7 @@ public class SearchCocktailByIngredientController {
     CocktailAPIService cocktailAPIService;
 
     @GetMapping("/search-ingredient/{ingredient}")
-    public ListOfDrinksItems searchCocktailByName(@PathVariable("ingredient") String ingredient) {
+    public ListOfDrinksItems searchCocktailByIngredient(@PathVariable("ingredient") String ingredient) {
         return cocktailAPIService.searchCocktailByIngredient(ingredient);
     }
 }
