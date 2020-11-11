@@ -15,7 +15,7 @@ public class SpiritDescriptionController {
     @Autowired
     CocktailAPIService cocktailAPIService;
 
-    @GetMapping("/spirits/{spiritDescriptionName}")
+    @GetMapping("/spirits/name/{spiritDescriptionName}")
     public SpiritDescription getSpiritDescription (@PathVariable("spiritDescriptionName") String spiritDescriptionName) {
         return cocktailAPIService.getSpiritDescription(spiritDescriptionName);
     }
