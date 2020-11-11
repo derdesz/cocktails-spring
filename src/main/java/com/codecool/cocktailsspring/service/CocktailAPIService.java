@@ -4,7 +4,7 @@ import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
 import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
 import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import com.codecool.cocktailsspring.model.detailedcocktail.DetailedCocktail;
-
+import com.codecool.cocktailsspring.model.spiritdescription.SpiritDescription;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +24,10 @@ public class CocktailAPIService {
     private String cocktailById;
 
 
+    @Value("${spiritDescription.url}")
+    private String spiritDescription;
+
+
     @Value("${filterCocktailsAlcoholic.url}")
     private String cocktailsAlcoholicURL ;
 
@@ -34,6 +38,7 @@ public class CocktailAPIService {
     private String cocktailByIngredientURL;
 
     public ListOfDrinksItems getCocktailsBySpirit(Spirit spirit) {
+
         RestTemplate template = new RestTemplate();
         ResponseEntity<ListOfDrinksItems> cocktailsResponseEntity =
                 template.exchange(cocktailsBySpiritURL + spirit, HttpMethod.GET, null, ListOfDrinksItems.class);
@@ -62,6 +67,16 @@ public class CocktailAPIService {
         return detailedCocktailResponseEntity.getBody();
     }
 
+
+
+    public SpiritDescription getSpiritDescription (String spiritDescriptionName) {
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<SpiritDescription> spiritDescriptionResponseEntity = template.exchange(spiritDescription + spiritDescriptionName, HttpMethod.GET, null, SpiritDescription.class);
+        return spiritDescriptionResponseEntity.getBody();
+    }
+
+
+
     public DetailedCocktail searchCocktailByName(String name) {
         RestTemplate template = new RestTemplate();
         ResponseEntity<DetailedCocktail> detailedCocktailResponseEntity =
@@ -75,4 +90,5 @@ public class CocktailAPIService {
                 template.exchange(cocktailByIngredientURL + ingredient, HttpMethod.GET, null, ListOfDrinksItems.class);
         return cocktailsResponseEntity.getBody();
     }
+
 }
