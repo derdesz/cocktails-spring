@@ -3,6 +3,7 @@ package com.codecool.cocktailsspring.service;
 import com.codecool.cocktailsspring.model.byspirit.CocktailsBySpirit;
 import com.codecool.cocktailsspring.model.byspirit.Spirit;
 import com.codecool.cocktailsspring.model.detailedcocktail.DetailedCocktail;
+import com.codecool.cocktailsspring.model.spiritdescription.SpiritDescription;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class CocktailAPIService {
 
     @Value("${cocktailById.url}")
     private String cocktailById;
+
+    @Value("${spiritDescription.url}")
+    private String spiritDescription;
 
     public CocktailsBySpirit getCocktailsBySpirit(Spirit spirit) {
         RestTemplate template = new RestTemplate();
@@ -42,6 +46,12 @@ public class CocktailAPIService {
         ResponseEntity<DetailedCocktail> detailedCocktailResponseEntity =
                 template.exchange(cocktailById + id, HttpMethod.GET, null, DetailedCocktail.class);
         return detailedCocktailResponseEntity.getBody();
+    }
+
+    public SpiritDescription getSpiritDescription (String spiritDescriptionName) {
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<SpiritDescription> spiritDescriptionResponseEntity = template.exchange(spiritDescription + spiritDescriptionName, HttpMethod.GET, null, SpiritDescription.class);
+        return spiritDescriptionResponseEntity.getBody();
     }
 
 }
