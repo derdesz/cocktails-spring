@@ -37,7 +37,7 @@ public class CocktailAPIService {
     @Value("${searchIngredient.url}")
     private String cocktailByIngredientURL;
 
-    public ListOfDrinksItems getCocktailsBySpirit(Spirit spirit) {
+    public ListOfDrinksItems getCocktailsBySpirit(String spirit) {
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<ListOfDrinksItems> cocktailsResponseEntity =
@@ -45,7 +45,7 @@ public class CocktailAPIService {
         return cocktailsResponseEntity.getBody();
     }
 
-    public ListOfDrinksItems getCocktailsByAlcoholic(Alcoholic alcoholic) {
+    public ListOfDrinksItems getCocktailsByAlcoholic(String alcoholic) {
         RestTemplate template = new RestTemplate();
         ResponseEntity<ListOfDrinksItems> cocktailsResponseEntity =
                 template.exchange(cocktailsAlcoholicURL + alcoholic, HttpMethod.GET, null, ListOfDrinksItems.class);
@@ -60,7 +60,7 @@ public class CocktailAPIService {
     }
 
 
-    public DetailedCocktail getCocktailById(int id) {
+    public DetailedCocktail getCocktailById(String id) {
         RestTemplate template = new RestTemplate();
         ResponseEntity<DetailedCocktail> detailedCocktailResponseEntity =
                 template.exchange(cocktailById + id, HttpMethod.GET, null, DetailedCocktail.class);

@@ -17,7 +17,7 @@ public class CocktailsBySpiritController {
     CocktailAPIService cocktailAPIService;
 
     @GetMapping("/by-spirit/{spiritname}")
-    public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("spiritname") Spirit spiritname){
+    public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("spiritname") String spiritname){
         return cocktailAPIService.getCocktailsBySpirit(spiritname);
     }
 }

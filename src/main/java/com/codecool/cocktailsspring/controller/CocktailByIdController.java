@@ -16,7 +16,7 @@ public class CocktailByIdController {
     CocktailAPIService cocktailAPIService;
 
     @GetMapping("/{id}")
-    public DetailedCocktail getCocktailById(@PathVariable("id") int id) {
+    public DetailedCocktail getCocktailById(@PathVariable("id") String id) {
         return cocktailAPIService.getCocktailById(id);
     }
 }

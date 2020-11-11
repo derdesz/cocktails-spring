@@ -16,7 +16,7 @@ public class CocktailsByAlcoholicController {
     CocktailAPIService cocktailAPIService;
 
     @GetMapping("/filter/{alcoholic}")
-    public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("alcoholic") Alcoholic alcoholic){
+    public ListOfDrinksItems getCocktailsBySpirit(@PathVariable("alcoholic") String alcoholic){
         return cocktailAPIService.getCocktailsByAlcoholic(alcoholic);
     }
 }
