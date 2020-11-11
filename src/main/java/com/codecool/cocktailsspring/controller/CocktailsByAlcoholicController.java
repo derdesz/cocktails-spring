@@ -1,6 +1,5 @@
 package com.codecool.cocktailsspring.controller;
 
-import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
 import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;

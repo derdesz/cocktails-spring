@@ -1,8 +1,6 @@
 package com.codecool.cocktailsspring.service;
 
-import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
 import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
-import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import com.codecool.cocktailsspring.model.detailedcocktail.DetailedCocktail;
 import com.codecool.cocktailsspring.model.spiritdescription.SpiritDescription;
 import org.springframework.beans.factory.annotation.Value;

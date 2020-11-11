@@ -1,7 +1,6 @@
 package com.codecool.cocktailsspring.controller;
 
 import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
-import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
