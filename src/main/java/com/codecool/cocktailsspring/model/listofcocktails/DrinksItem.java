@@ -1,4 +1,4 @@
-package com.codecool.cocktailsspring.model.byspirit;
+package com.codecool.cocktailsspring.model.listofcocktails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

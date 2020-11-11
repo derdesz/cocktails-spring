@@ -1,7 +1,8 @@
 package com.codecool.cocktailsspring.service;
 
-import com.codecool.cocktailsspring.model.byspirit.CocktailsBySpirit;
-import com.codecool.cocktailsspring.model.byspirit.Spirit;
+import com.codecool.cocktailsspring.model.listofcocktails.Alcoholic;
+import com.codecool.cocktailsspring.model.listofcocktails.ListOfDrinksItems;
+import com.codecool.cocktailsspring.model.listofcocktails.Spirit;
 import com.codecool.cocktailsspring.model.detailedcocktail.DetailedCocktail;
 import com.codecool.cocktailsspring.model.spiritdescription.SpiritDescription;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,16 +23,28 @@ public class CocktailAPIService {
     @Value("${cocktailById.url}")
     private String cocktailById;
 
+
     @Value("${spiritDescription.url}")
     private String spiritDescription;
 
-    public CocktailsBySpirit getCocktailsBySpirit(Spirit spirit) {
+
+    @Value("${filterCocktailsAlcoholic.url}")
+    private String cocktailsAlcoholicURL ;
+
+    public ListOfDrinksItems getCocktailsBySpirit(Spirit spirit) {
+
         RestTemplate template = new RestTemplate();
-        ResponseEntity<CocktailsBySpirit> cocktailsResponseEntity =
-                template.exchange(cocktailsBySpiritURL + spirit, HttpMethod.GET, null, CocktailsBySpirit.class);
+        ResponseEntity<ListOfDrinksItems> cocktailsResponseEntity =
+                template.exchange(cocktailsBySpiritURL + spirit, HttpMethod.GET, null, ListOfDrinksItems.class);
         return cocktailsResponseEntity.getBody();
     }
 
+    public ListOfDrinksItems getCocktailsByAlcoholic(Alcoholic alcoholic) {
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<ListOfDrinksItems> cocktailsResponseEntity =
+                template.exchange(cocktailsAlcoholicURL + alcoholic, HttpMethod.GET, null, ListOfDrinksItems.class);
+        return cocktailsResponseEntity.getBody();
+    }
 
     public DetailedCocktail getRandomcocktail() {
         RestTemplate template = new RestTemplate();
@@ -48,10 +61,12 @@ public class CocktailAPIService {
         return detailedCocktailResponseEntity.getBody();
     }
 
+
     public SpiritDescription getSpiritDescription (String spiritDescriptionName) {
         RestTemplate template = new RestTemplate();
         ResponseEntity<SpiritDescription> spiritDescriptionResponseEntity = template.exchange(spiritDescription + spiritDescriptionName, HttpMethod.GET, null, SpiritDescription.class);
         return spiritDescriptionResponseEntity.getBody();
     }
+
 
 }
