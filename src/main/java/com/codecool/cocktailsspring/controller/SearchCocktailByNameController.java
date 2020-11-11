@@ -15,7 +15,7 @@ public class SearchCocktailByNameController {
     @Autowired
     CocktailAPIService cocktailAPIService;
 
-    @GetMapping("/search/{name}")
+    @GetMapping("/search/name/{name}")
     public DetailedCocktail searchCocktailByName(@PathVariable("name") String name) {
         return cocktailAPIService.searchCocktailByName(name);
     }
