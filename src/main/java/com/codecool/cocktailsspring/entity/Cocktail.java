@@ -1,5 +1,6 @@
 package com.codecool.cocktailsspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import java.sql.Clob;
 
 @Data
 @AllArgsConstructor
@@ -15,15 +18,13 @@ import javax.persistence.Id;
 public class Cocktail {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
-    private Long idDrink;
+    private String idDrink;
 
     private String strDrink;
 
     private String strAlcoholic;
 
+    @Lob
     private String strInstructions;
 
     private String strThumb;
