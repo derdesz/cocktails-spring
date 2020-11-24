@@ -27,7 +27,7 @@ public class Cocktail {
     @Lob
     private String strInstructions;
 
-    private String strThumb;
+    private String strDrinkThumb;
 
     private String strIngredient1;
 
