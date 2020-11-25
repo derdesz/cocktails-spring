@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.sql.Clob;
 
 @Data
@@ -89,6 +86,57 @@ public class Cocktail {
 
     private String strMeasure15;
 
+    @Lob
+    private String allIngredients;
+
+    @PrePersist
+    public void prePersist() {
+        StringBuilder sb = new StringBuilder();
+        if (strIngredient1 != null) {
+            sb.append(strIngredient1).append(" ");
+        }
+        if (strIngredient2 != null) {
+            sb.append(strIngredient2).append(" ");
+        }
+        if (strIngredient3 != null) {
+            sb.append(strIngredient3).append(" ");
+        }
+        if (strIngredient4 != null) {
+            sb.append(strIngredient5).append(" ");
+        }
+        if (strIngredient6 != null) {
+            sb.append(strIngredient6).append(" ");
+        }
+        if (strIngredient7 != null) {
+            sb.append(strIngredient7).append(" ");
+        }
+        if (strIngredient8 != null) {
+            sb.append(strIngredient8).append(" ");
+        }
+        if (strIngredient9 != null) {
+            sb.append(strIngredient9).append(" ");
+        }
+        if (strIngredient10 != null) {
+            sb.append(strIngredient10).append(" ");
+        }
+        if (strIngredient11 != null) {
+            sb.append(strIngredient11).append(" ");
+        }
+        if (strIngredient12 != null) {
+            sb.append(strIngredient12).append(" ");
+        }
+        if (strIngredient13 != null) {
+            sb.append(strIngredient13).append(" ");
+        }
+        if (strIngredient14 != null) {
+            sb.append(strIngredient14).append(" ");
+        }
+        if (strIngredient15 != null) {
+            sb.append(strIngredient15).append(" ");
+        }
+        allIngredients = sb.toString().trim();
+
+    }
 
 
 
