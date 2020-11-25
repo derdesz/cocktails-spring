@@ -91,6 +91,10 @@ public class Cocktail {
 
     @PrePersist
     public void prePersist() {
+        if(strAlcoholic.startsWith("Non")){
+            strAlcoholic = "Non Alcoholic";
+        }
+
         StringBuilder sb = new StringBuilder();
         if (strIngredient1 != null) {
             sb.append(strIngredient1).append(" ");
@@ -137,9 +141,4 @@ public class Cocktail {
         allIngredients = sb.toString().trim();
 
     }
-
-
-
-
-
 }
