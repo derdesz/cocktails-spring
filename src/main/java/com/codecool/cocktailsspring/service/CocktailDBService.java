@@ -30,10 +30,10 @@ public class CocktailDBService {
                         try {
                             Drinks drinks = objectMapper.readValue(it.toFile(), Drinks.class);
                             if (drinks.getDrinks() == null) {
-                                System.out.println("Could not load drinks from : " + it);
+//                                System.out.println("Could not load drinks from : " + it);
                             } else {
                                 for (Cocktail cocktail : drinks.getDrinks()) {
-                                    System.out.println("Cocktail : " + cocktail.getIdDrink() + " " + cocktail.getStrDrink());
+//                                    System.out.println("Cocktail : " + cocktail.getIdDrink() + " " + cocktail.getStrDrink());
                                     cocktailRepository.save(cocktail);
                                 }
                             }
