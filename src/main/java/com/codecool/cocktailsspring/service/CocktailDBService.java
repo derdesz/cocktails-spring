@@ -58,10 +58,17 @@ public class CocktailDBService {
         return sb.toString().trim();
     }
 
+    public String capitalize (String string) {
+        String firstLetter = String.valueOf(string.charAt(0)).toUpperCase();
+        String restOfLetters = string.substring(1);
+        System.out.println(firstLetter + restOfLetters);
+        return firstLetter + restOfLetters;
+    }
+
     public void createCocktail(NewCocktail cocktailData) {
         Cocktail cocktail = new Cocktail();
         cocktail.setIdDrink(UUID.randomUUID().toString());
-        cocktail.setStrDrink(cocktailData.getStrDrink());
+        cocktail.setStrDrink(capitalize(cocktailData.getStrDrink()));
         cocktail.setStrAlcoholic(cocktailData.getStrAlcoholic());
         cocktail.setStrInstructions(cocktailData.getStrInstructions());
         cocktail.setAllIngredients(createStringsFromList(cocktailData.getAllIngredients()));
