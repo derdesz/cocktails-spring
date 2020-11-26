@@ -136,7 +136,10 @@ public class Cocktail {
         if (strIngredient15 != null) {
             sb.append(strIngredient15).append(" ");
         }
-        allIngredients = sb.toString().trim();
+        String ingredients = sb.toString().trim();
+        if (!ingredients.isEmpty()) {
+            allIngredients = ingredients;
+        }
 
     }
 }
