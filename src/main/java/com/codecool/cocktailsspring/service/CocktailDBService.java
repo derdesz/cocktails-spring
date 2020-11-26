@@ -2,6 +2,7 @@ package com.codecool.cocktailsspring.service;
 
 import com.codecool.cocktailsspring.entity.Cocktail;
 import com.codecool.cocktailsspring.model.Drinks;
+import com.codecool.cocktailsspring.model.NewCocktail;
 import com.codecool.cocktailsspring.repository.CocktailRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +13,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 public class CocktailDBService {
@@ -44,5 +50,25 @@ public class CocktailDBService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String createStringsFromList (List<String> list) {
+        StringBuilder sb = new StringBuilder();
+        for (String listItem : list) {
+            sb.append(listItem);
+            sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+    public void createCocktail(NewCocktail cocktailData) {
+        Cocktail cocktail = new Cocktail();
+        cocktail.setIdDrink(UUID.randomUUID().toString());
+        cocktail.setStrDrink(cocktailData.getStrDrink());
+        cocktail.setStrAlcoholic(cocktailData.getStrAlcoholic());
+        cocktail.setStrInstructions(cocktailData.getStrInstructions());
+        cocktail.setAllIngredients(createStringsFromList(cocktailData.getAllIngredients()));
+        System.out.println("create " + cocktail.getAllIngredients());
+        cocktailRepository.save(cocktail);
     }
 }
