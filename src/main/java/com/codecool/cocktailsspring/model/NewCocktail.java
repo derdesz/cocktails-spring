@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +23,6 @@ public class NewCocktail {
     @Lob
     private String strInstructions;
 
-    @Lob
-    private List<String> allIngredients;
+    @ElementCollection
+    private List<String> allIngredients = new ArrayList<>();
 }

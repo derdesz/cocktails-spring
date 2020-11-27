@@ -1,6 +1,5 @@
 package com.codecool.cocktailsspring.repository;
 
-import com.codecool.cocktailsspring.entity.Cocktail;
 import com.codecool.cocktailsspring.model.NewCocktail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,16 +8,17 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CocktailRepository extends JpaRepository<NewCocktail, Long> {
-    @Query("SELECT c FROM Cocktail c WHERE c.strDrink LIKE %:name%")
-    List<Cocktail> findCocktailsByStrDrink(@Param ("name") String name);
 
-    @Query("SELECT c FROM Cocktail c WHERE c.allIngredients LIKE %:ingredient%")
-    List<Cocktail> findCocktailByStrIngredient(@Param ("ingredient") String ingredient);
+    @Query("SELECT c FROM NewCocktail c WHERE c.strDrink LIKE %:name%")
+    List<NewCocktail> findCocktailsByStrDrink(@Param ("name") String name);
 
-    @Query("SELECT c FROM Cocktail c WHERE c.idDrink = :id")
-    Cocktail findCocktailByIdDrink(@Param ("id") String id);
+    @Query("SELECT c FROM NewCocktail c WHERE  (:ingredient) IN (c.allIngredients) ")
+    List<NewCocktail> findCocktailByStrIngredient(@Param ("ingredient") String ingredient);
 
-    @Query("SELECT c FROM Cocktail c WHERE c.strAlcoholic LIKE %:alcoholic%")
-    List<Cocktail> findCocktailsByStAndStrAlcoholic(@Param ("alcoholic") String alcoholic);
+    @Query("SELECT c FROM NewCocktail c WHERE c.idDrink = :id")
+    NewCocktail findCocktailByIdDrink(@Param ("id") String id);
+
+    @Query("SELECT c FROM NewCocktail c WHERE c.strAlcoholic LIKE %:alcoholic%")
+    List<NewCocktail> findCocktailsByStAndStrAlcoholic(@Param ("alcoholic") String alcoholic);
 
 }

@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Cocktail {
 
     @Id
@@ -106,6 +105,9 @@ public class Cocktail {
             listOfIngredients.add(strIngredient3);
         }
         if (strIngredient4 != null) {
+            listOfIngredients.add(strIngredient4);
+        }
+        if (strIngredient5 != null) {
             listOfIngredients.add(strIngredient5);
         }
         if (strIngredient6 != null) {
