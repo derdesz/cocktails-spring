@@ -1,7 +1,6 @@
 package com.codecool.cocktailsspring.repository;
 
 import com.codecool.cocktailsspring.entity.Cocktail;
-import com.codecool.cocktailsspring.model.Drinks;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
