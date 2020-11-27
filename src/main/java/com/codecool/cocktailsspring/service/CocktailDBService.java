@@ -3,11 +3,16 @@ package com.codecool.cocktailsspring.service;
 import com.codecool.cocktailsspring.entity.Cocktail;
 import com.codecool.cocktailsspring.model.Drinks;
 import com.codecool.cocktailsspring.model.NewCocktail;
+import com.codecool.cocktailsspring.model.NewCocktailMapper;
 import com.codecool.cocktailsspring.repository.CocktailRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,27 +27,39 @@ public class CocktailDBService {
     @Autowired
     private CocktailRepository cocktailRepository;
 
-    public void importCocktailData(){
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try (Stream<Path> paths = Files.walk(Paths.get("./cocktails"))) {
-            paths
-                    .filter(Files::isRegularFile)
-                    .forEach( it -> {
-                        try {
-                            Drinks drinks = objectMapper.readValue(it.toFile(), Drinks.class);
-                            if (drinks.getDrinks() != null) {
-                                for (Cocktail cocktail : drinks.getDrinks()) {
-                                    cocktailRepository.save(cocktail);
-                                }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Value("${cocktailsByLetter.url}")
+    private String COCKTAILS_BY_LETTER;
+
+//    public void importCocktailData(){
+//        ObjectMapper objectMapper = new ObjectMapper()
+//                .configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true)
+//                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        try (Stream<Path> paths = Files.walk(Paths.get("./cocktails"))) {
+//            paths
+//                    .filter(Files::isRegularFile)
+//                    .forEach( it -> {
+//                        try {
+//                            Drinks drinks = objectMapper.readValue(it.toFile(), Drinks.class);
+//                            if (drinks.getDrinks() != null) {
+//                                for (Cocktail cocktail : drinks.getDrinks()) {
+//                                    cocktailRepository.save(cocktail);
+//                                }
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void importJSONData(){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Drinks> responseEntity = restTemplate.exchange(COCKTAILS_BY_LETTER.concat("a"), HttpMethod.GET, null, Drinks.class);
+        List<NewCocktail> newCocktails = NewCocktailMapper.listNewCocktails(responseEntity.getBody());
+        for (NewCocktail cocktail : newCocktails) {
+            cocktailRepository.save(cocktail);
         }
     }
 
@@ -70,6 +87,6 @@ public class CocktailDBService {
         cocktail.setStrInstructions(cocktailData.getStrInstructions());
         cocktail.setAllIngredients(createStringsFromList(cocktailData.getAllIngredients()));
         System.out.println("create " + cocktail.getAllIngredients());
-        cocktailRepository.save(cocktail);
+//        cocktailRepository.save(cocktail);
     }
 }
