@@ -1,6 +1,6 @@
 package com.codecool.cocktailsspring.controller;
 
-import com.codecool.cocktailsspring.entity.Cocktail;
+import com.codecool.cocktailsspring.model.NewCocktail;
 import com.codecool.cocktailsspring.repository.CocktailRepository;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class CocktailByIdController {
     CocktailRepository cocktailRepository;
 
     @GetMapping("/{id}")
-    public Cocktail getCocktailById(@PathVariable("id") String id) {
+    public NewCocktail getCocktailById(@PathVariable("id") String id) {
         return cocktailRepository.findCocktailByIdDrink(id);
     }
 }

@@ -24,6 +24,7 @@ import java.util.stream.Stream;
 
 @Service
 public class CocktailDBService {
+
     @Autowired
     private CocktailRepository cocktailRepository;
 

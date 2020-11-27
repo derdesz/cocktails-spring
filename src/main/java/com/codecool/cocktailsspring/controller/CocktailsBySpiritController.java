@@ -21,8 +21,8 @@ public class CocktailsBySpiritController {
     @Autowired
     CocktailRepository cocktailRepository;
 
-    @GetMapping("/by-spirit/{spiritname}")
-    public List<Cocktail> getCocktailsBySpirit(@PathVariable("spiritname") String spiritname){
-        return cocktailRepository.findCocktailByStrIngredient(spiritname);
-    }
+//    @GetMapping("/by-spirit/{spiritname}")
+//    public List<Cocktail> getCocktailsBySpirit(@PathVariable("spiritname") String spiritname){
+//        return cocktailRepository.findCocktailByStrIngredient(spiritname);
+//    }
 }

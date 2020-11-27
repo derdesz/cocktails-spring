@@ -1,6 +1,6 @@
 package com.codecool.cocktailsspring.controller;
 
-import com.codecool.cocktailsspring.entity.Cocktail;
+import com.codecool.cocktailsspring.model.NewCocktail;
 import com.codecool.cocktailsspring.repository.CocktailRepository;
 import com.codecool.cocktailsspring.service.CocktailAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class SearchCocktailByNameController {
     CocktailRepository cocktailRepository;
 
     @GetMapping("/search/name/{name}")
-    public List<Cocktail> searchCocktailByName(@PathVariable("name") String name) {
+    public List<NewCocktail> searchCocktailByName(@PathVariable("name") String name) {
         return cocktailRepository.findCocktailsByStrDrink(name);
     }
 }
