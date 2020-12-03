@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NewCocktailMapper {
     public static NewCocktail cocktailMapper(Cocktail cocktail){
-        return new NewCocktail(cocktail.getIdDrink(), cocktail.getStrDrink(), cocktail.getStrAlcoholic(), cocktail.getStrInstructions(), cocktail.createListOfIngredients());
+        return new NewCocktail(cocktail.getIdDrink(), cocktail.getStrDrink(), cocktail.getStrAlcoholic(), cocktail.getStrInstructions(), cocktail.createListOfIngredients(), cocktail.getStrDrinkThumb());
     }
 
     public static List<NewCocktail> listNewCocktails(Drinks drinks){

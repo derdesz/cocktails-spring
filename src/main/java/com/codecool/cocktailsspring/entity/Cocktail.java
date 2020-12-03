@@ -85,60 +85,59 @@ public class Cocktail {
     private String strMeasure14;
 
     private String strMeasure15;
-
-    @Lob
-    private String allIngredients;
+//
+//    private List<String> allIngredients;
 
     public List<String> createListOfIngredients() {
-        if(strAlcoholic.startsWith("Non")){
+        if (strAlcoholic.startsWith("Non")) {
             strAlcoholic = "Non Alcoholic";
         }
 
         List<String> listOfIngredients = new ArrayList<String>();
         if (strIngredient1 != null) {
-            listOfIngredients.add(strIngredient1);
+            listOfIngredients.add(strIngredient1 + " " + strMeasure1);
         }
         if (strIngredient2 != null) {
-            listOfIngredients.add(strIngredient2);
+            listOfIngredients.add(strIngredient2 + " " + strMeasure2);
         }
         if (strIngredient3 != null) {
-            listOfIngredients.add(strIngredient3);
+            listOfIngredients.add(strIngredient3 + " " + strMeasure3);
         }
         if (strIngredient4 != null) {
-            listOfIngredients.add(strIngredient4);
+            listOfIngredients.add(strIngredient4 + " " + strMeasure4);
         }
         if (strIngredient5 != null) {
-            listOfIngredients.add(strIngredient5);
+            listOfIngredients.add(strIngredient5 + " " + strMeasure5);
         }
         if (strIngredient6 != null) {
-            listOfIngredients.add(strIngredient6);
+            listOfIngredients.add(strIngredient6 + " " + strMeasure6);
         }
         if (strIngredient7 != null) {
-            listOfIngredients.add(strIngredient7);
+            listOfIngredients.add(strIngredient7 + " " + strMeasure7);
         }
         if (strIngredient8 != null) {
-            listOfIngredients.add(strIngredient8);
+            listOfIngredients.add(strIngredient8 + " " + strMeasure8);
         }
         if (strIngredient9 != null) {
-            listOfIngredients.add(strIngredient9);
+            listOfIngredients.add(strIngredient9 + " " + strMeasure9);
         }
         if (strIngredient10 != null) {
-            listOfIngredients.add(strIngredient10);
+            listOfIngredients.add(strIngredient10 + " " + strMeasure10);
         }
         if (strIngredient11 != null) {
-            listOfIngredients.add(strIngredient11);
+            listOfIngredients.add(strIngredient11 + " " + strMeasure11);
         }
         if (strIngredient12 != null) {
-            listOfIngredients.add(strIngredient12);
+            listOfIngredients.add(strIngredient12 + " " + strMeasure12);
         }
         if (strIngredient13 != null) {
-            listOfIngredients.add(strIngredient13);
+            listOfIngredients.add(strIngredient13 + " " + strMeasure13);
         }
         if (strIngredient14 != null) {
-            listOfIngredients.add(strIngredient14);
+            listOfIngredients.add(strIngredient14 + " " + strMeasure14);
         }
         if (strIngredient15 != null) {
-            listOfIngredients.add(strIngredient15);
+            listOfIngredients.add(strIngredient15 + " " + strMeasure15);
         }
         return listOfIngredients;
 

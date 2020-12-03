@@ -25,4 +25,6 @@ public class NewCocktail {
 
     @ElementCollection
     private List<String> allIngredients = new ArrayList<>();
+
+    private String strDrinkThumb;
 }

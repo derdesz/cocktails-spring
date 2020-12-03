@@ -23,6 +23,6 @@ public class SearchCocktailByNameController {
 
     @GetMapping("/search/name/{name}")
     public List<NewCocktail> searchCocktailByName(@PathVariable("name") String name) {
-        return cocktailRepository.findCocktailsByStrDrink(name);
+        return cocktailRepository.findAllByStrDrinkContainingIgnoreCase(name);
     }
 }
