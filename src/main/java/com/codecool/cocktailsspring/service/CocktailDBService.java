@@ -20,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -81,14 +82,15 @@ public class CocktailDBService {
     }
 
     public void createCocktail(NewCocktail cocktailData) {
-        Cocktail cocktail = new Cocktail();
+        NewCocktail cocktail = new NewCocktail();
         cocktail.setIdDrink(UUID.randomUUID().toString());
         cocktail.setStrDrink(capitalize(cocktailData.getStrDrink()));
         cocktail.setStrAlcoholic(cocktailData.getStrAlcoholic());
         cocktail.setStrInstructions(cocktailData.getStrInstructions());
-        cocktail.setAllIngredients(createStringsFromList(cocktailData.getAllIngredients()));
-        System.out.println("create " + cocktail.getAllIngredients());
-//        cocktailRepository.save(cocktail);
+        cocktail.setAllIngredients(cocktailData.getAllIngredients());
+//        System.out.println("create " + cocktail.getAllIngredients());
+        cocktailRepository.save(cocktail);
+    }
 
     public List<NewCocktail> filterCocktailsByIngredient(String ingredientName){
         return cocktailRepository.findAll()

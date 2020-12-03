@@ -85,9 +85,8 @@ public class Cocktail {
     private String strMeasure14;
 
     private String strMeasure15;
-
-    @Lob
-    private String allIngredients;
+//
+//    private List<String> allIngredients;
 
     public List<String> createListOfIngredients() {
         if (strAlcoholic.startsWith("Non")) {
