@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CocktailRepository extends JpaRepository<NewCocktail, Long> {
+    
+    List<NewCocktail> findAllByStrDrinkContainingIgnoreCase(String name);
 
     @Query("SELECT c FROM NewCocktail c")
     List<NewCocktail> findCocktailByStrIngredient(@Param ("ingredient") String ingredient);
