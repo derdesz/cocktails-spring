@@ -21,7 +21,8 @@ public class CocktailsSpringApplication {
     @Profile("production")
     public CommandLineRunner init(){
         return args -> {
-            cocktailDBService.importCocktailData();
+            cocktailDBService.importJSONData();
+//            cocktailDBService.importCocktailData();
         };
     }
 }

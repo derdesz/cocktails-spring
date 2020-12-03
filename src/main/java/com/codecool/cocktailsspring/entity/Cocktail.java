@@ -5,16 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Cocktail {
 
     @Id
     private String idDrink;
 
+    @Column(unique = true)
     private String strDrink;
 
     private String strAlcoholic;
@@ -83,63 +85,61 @@ public class Cocktail {
     private String strMeasure14;
 
     private String strMeasure15;
+//
+//    private List<String> allIngredients;
 
-    @Lob
-    private String allIngredients;
-
-    @PrePersist
-    public void prePersist() {
-        if(strAlcoholic.startsWith("Non")){
+    public List<String> createListOfIngredients() {
+        if (strAlcoholic.startsWith("Non")) {
             strAlcoholic = "Non Alcoholic";
         }
 
-        StringBuilder sb = new StringBuilder();
+        List<String> listOfIngredients = new ArrayList<String>();
         if (strIngredient1 != null) {
-            sb.append(strIngredient1).append(" ");
+            listOfIngredients.add(strIngredient1 + " " + strMeasure1);
         }
         if (strIngredient2 != null) {
-            sb.append(strIngredient2).append(" ");
+            listOfIngredients.add(strIngredient2 + " " + strMeasure2);
         }
         if (strIngredient3 != null) {
-            sb.append(strIngredient3).append(" ");
+            listOfIngredients.add(strIngredient3 + " " + strMeasure3);
         }
         if (strIngredient4 != null) {
-            sb.append(strIngredient5).append(" ");
+            listOfIngredients.add(strIngredient4 + " " + strMeasure4);
+        }
+        if (strIngredient5 != null) {
+            listOfIngredients.add(strIngredient5 + " " + strMeasure5);
         }
         if (strIngredient6 != null) {
-            sb.append(strIngredient6).append(" ");
+            listOfIngredients.add(strIngredient6 + " " + strMeasure6);
         }
         if (strIngredient7 != null) {
-            sb.append(strIngredient7).append(" ");
+            listOfIngredients.add(strIngredient7 + " " + strMeasure7);
         }
         if (strIngredient8 != null) {
-            sb.append(strIngredient8).append(" ");
+            listOfIngredients.add(strIngredient8 + " " + strMeasure8);
         }
         if (strIngredient9 != null) {
-            sb.append(strIngredient9).append(" ");
+            listOfIngredients.add(strIngredient9 + " " + strMeasure9);
         }
         if (strIngredient10 != null) {
-            sb.append(strIngredient10).append(" ");
+            listOfIngredients.add(strIngredient10 + " " + strMeasure10);
         }
         if (strIngredient11 != null) {
-            sb.append(strIngredient11).append(" ");
+            listOfIngredients.add(strIngredient11 + " " + strMeasure11);
         }
         if (strIngredient12 != null) {
-            sb.append(strIngredient12).append(" ");
+            listOfIngredients.add(strIngredient12 + " " + strMeasure12);
         }
         if (strIngredient13 != null) {
-            sb.append(strIngredient13).append(" ");
+            listOfIngredients.add(strIngredient13 + " " + strMeasure13);
         }
         if (strIngredient14 != null) {
-            sb.append(strIngredient14).append(" ");
+            listOfIngredients.add(strIngredient14 + " " + strMeasure14);
         }
         if (strIngredient15 != null) {
-            sb.append(strIngredient15).append(" ");
+            listOfIngredients.add(strIngredient15 + " " + strMeasure15);
         }
-        String ingredients = sb.toString().trim();
-        if (!ingredients.isEmpty()) {
-            allIngredients = ingredients;
-        }
+        return listOfIngredients;
 
     }
 }
