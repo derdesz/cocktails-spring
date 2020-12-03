@@ -9,10 +9,7 @@ import java.util.List;
 
 public interface CocktailRepository extends JpaRepository<NewCocktail, Long> {
 
-    @Query("SELECT c FROM NewCocktail c WHERE c.strDrink LIKE %:name%")
-    List<NewCocktail> findCocktailsByStrDrink(@Param ("name") String name);
-
-    @Query("SELECT c FROM NewCocktail c WHERE  (:ingredient) IN (c.allIngredients) ")
+    @Query("SELECT c FROM NewCocktail c")
     List<NewCocktail> findCocktailByStrIngredient(@Param ("ingredient") String ingredient);
 
     @Query("SELECT c FROM NewCocktail c WHERE c.idDrink = :id")

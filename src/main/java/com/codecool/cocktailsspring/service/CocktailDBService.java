@@ -89,5 +89,18 @@ public class CocktailDBService {
         cocktail.setAllIngredients(createStringsFromList(cocktailData.getAllIngredients()));
         System.out.println("create " + cocktail.getAllIngredients());
 //        cocktailRepository.save(cocktail);
+
+    public List<NewCocktail> filterCocktailsByIngredient(String ingredientName){
+        return cocktailRepository.findAll()
+                .stream()
+                .filter(newCocktail -> {
+                    for (String ingredient : newCocktail.getAllIngredients()) {
+                        if (ingredient.contains(ingredientName)){
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
     }
 }
