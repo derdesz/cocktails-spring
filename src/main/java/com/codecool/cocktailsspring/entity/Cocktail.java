@@ -89,55 +89,51 @@ public class Cocktail {
 //    private List<String> allIngredients;
 
     public List<String> createListOfIngredients() {
-        if (strAlcoholic.startsWith("Non")) {
-            strAlcoholic = "Non Alcoholic";
-        }
-
         List<String> listOfIngredients = new ArrayList<String>();
         if (strIngredient1 != null) {
-            listOfIngredients.add(strIngredient1 + " " + strMeasure1);
+            listOfIngredients.add(strMeasure1 + " " +  strIngredient1);
         }
         if (strIngredient2 != null) {
-            listOfIngredients.add(strIngredient2 + " " + strMeasure2);
+            listOfIngredients.add(strMeasure2 + " " + strIngredient2);
         }
         if (strIngredient3 != null) {
-            listOfIngredients.add(strIngredient3 + " " + strMeasure3);
+            listOfIngredients.add(strMeasure3 + " " + strIngredient3);
         }
         if (strIngredient4 != null) {
-            listOfIngredients.add(strIngredient4 + " " + strMeasure4);
+            listOfIngredients.add(strMeasure4 + " " + strIngredient4);
         }
         if (strIngredient5 != null) {
-            listOfIngredients.add(strIngredient5 + " " + strMeasure5);
+            listOfIngredients.add(strMeasure5 + " " + strIngredient5);
         }
         if (strIngredient6 != null) {
-            listOfIngredients.add(strIngredient6 + " " + strMeasure6);
+            listOfIngredients.add(strMeasure6 + " " + strIngredient6);
         }
         if (strIngredient7 != null) {
-            listOfIngredients.add(strIngredient7 + " " + strMeasure7);
+            listOfIngredients.add(strMeasure7 + " " + strIngredient7);
         }
         if (strIngredient8 != null) {
-            listOfIngredients.add(strIngredient8 + " " + strMeasure8);
+            listOfIngredients.add(strMeasure8 + " " + strIngredient8);
         }
         if (strIngredient9 != null) {
-            listOfIngredients.add(strIngredient9 + " " + strMeasure9);
+            listOfIngredients.add(strMeasure9 + " " + strIngredient9);
         }
         if (strIngredient10 != null) {
-            listOfIngredients.add(strIngredient10 + " " + strMeasure10);
+            listOfIngredients.add(strMeasure10 + " " + strIngredient10);
         }
         if (strIngredient11 != null) {
-            listOfIngredients.add(strIngredient11 + " " + strMeasure11);
+            listOfIngredients.add(strMeasure11 + " " + strIngredient11);
         }
         if (strIngredient12 != null) {
-            listOfIngredients.add(strIngredient12 + " " + strMeasure12);
+            listOfIngredients.add(strMeasure12 + " " + strIngredient12);
         }
         if (strIngredient13 != null) {
-            listOfIngredients.add(strIngredient13 + " " + strMeasure13);
+            listOfIngredients.add(strMeasure13 + " " + strIngredient13);
         }
         if (strIngredient14 != null) {
-            listOfIngredients.add(strIngredient14 + " " + strMeasure14);
+            listOfIngredients.add(strMeasure14 + " " + strIngredient14);
         }
         if (strIngredient15 != null) {
-            listOfIngredients.add(strIngredient15 + " " + strMeasure15);
+            listOfIngredients.add(strMeasure15 + " " + strIngredient15);
         }
         return listOfIngredients;
 
