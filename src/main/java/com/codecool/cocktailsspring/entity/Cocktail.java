@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,55 +86,26 @@ public class Cocktail {
     private String strMeasure14;
 
     private String strMeasure15;
-//
-//    private List<String> allIngredients;
 
     public List<String> createListOfIngredients() {
         List<String> listOfIngredients = new ArrayList<String>();
-        if (strIngredient1 != null) {
-            listOfIngredients.add(strMeasure1 + " " +  strIngredient1);
-        }
-        if (strIngredient2 != null) {
-            listOfIngredients.add(strMeasure2 + " " + strIngredient2);
-        }
-        if (strIngredient3 != null) {
-            listOfIngredients.add(strMeasure3 + " " + strIngredient3);
-        }
-        if (strIngredient4 != null) {
-            listOfIngredients.add(strMeasure4 + " " + strIngredient4);
-        }
-        if (strIngredient5 != null) {
-            listOfIngredients.add(strMeasure5 + " " + strIngredient5);
-        }
-        if (strIngredient6 != null) {
-            listOfIngredients.add(strMeasure6 + " " + strIngredient6);
-        }
-        if (strIngredient7 != null) {
-            listOfIngredients.add(strMeasure7 + " " + strIngredient7);
-        }
-        if (strIngredient8 != null) {
-            listOfIngredients.add(strMeasure8 + " " + strIngredient8);
-        }
-        if (strIngredient9 != null) {
-            listOfIngredients.add(strMeasure9 + " " + strIngredient9);
-        }
-        if (strIngredient10 != null) {
-            listOfIngredients.add(strMeasure10 + " " + strIngredient10);
-        }
-        if (strIngredient11 != null) {
-            listOfIngredients.add(strMeasure11 + " " + strIngredient11);
-        }
-        if (strIngredient12 != null) {
-            listOfIngredients.add(strMeasure12 + " " + strIngredient12);
-        }
-        if (strIngredient13 != null) {
-            listOfIngredients.add(strMeasure13 + " " + strIngredient13);
-        }
-        if (strIngredient14 != null) {
-            listOfIngredients.add(strMeasure14 + " " + strIngredient14);
-        }
-        if (strIngredient15 != null) {
-            listOfIngredients.add(strMeasure15 + " " + strIngredient15);
+        for (int i = 1; i <= 15; i++) {
+            try {
+                Field measureField = Cocktail.class.getDeclaredField("strMeasure" + i);
+                Field ingredientField = Cocktail.class.getDeclaredField("strIngredient" + i);
+                String ingredient = (String) ingredientField.get(this);
+                if (ingredient != null) {
+                    String measure = (String) measureField.get(this);
+                    StringBuilder sb = new StringBuilder();
+                    if (measure != null) {
+                        sb.append(measure).append(" ");
+                    }
+                    sb.append(ingredient);
+                    listOfIngredients.add(sb.toString());
+                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
         return listOfIngredients;
 
