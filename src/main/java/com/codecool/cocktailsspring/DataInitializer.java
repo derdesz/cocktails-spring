@@ -1,5 +1,4 @@
-package com.codecool.mytodoapp;
-
+package com.codecool.cocktailsspring;
 
 import com.codecool.cocktailsspring.entity.CocktailAppUser;
 import com.codecool.cocktailsspring.model.ERole;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
 @Component
@@ -33,39 +32,33 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        userRepository.save(CocktailAppUser.builder()
-            .email("georgia@cocktail.com")
-            .password(passwordEncoder.encode("password"))
-            .name("Georgia")
-            .roles((Set<Role>) Role.builder().name(ERole.ROLE_ADMIN).build())
-            .build()
-        );
+        Role admin = new Role(ERole.ROLE_ADMIN);
 
-        userRepository.save(CocktailAppUser.builder()
-                .email("dori@cocktail.com")
+        CocktailAppUser dori = CocktailAppUser.builder()
+                .email("georgia@cocktail.com")
                 .password(passwordEncoder.encode("password"))
-                .name("Dori")
-                .roles((Set<Role>) Role.builder().name(ERole.ROLE_ADMIN).build())
-                .build()
-        );
+                .name("Georgia")
+                .roles(Collections.singletonList(admin))
+                .build();
 
-        userRepository.save(CocktailAppUser.builder()
-                .email("katt@cocktail.com")
-                .password(passwordEncoder.encode("password"))
-                .name("Katt")
-                .roles((Set<Role>) Role.builder().name(ERole.ROLE_ADMIN).build())
-                .build()
-        );
 
-        userRepository.save(CocktailAppUser.builder()
-                .email("gini@cocktail.com")
-                .password(passwordEncoder.encode("password"))
-                .name("Gini")
-                .roles((Set<Role>) Role.builder().name(ERole.ROLE_USER).build())
-                .build()
-        );
+//        CocktailAppUser katt = CocktailAppUser.builder()
+//                .email("katt@cocktail.com")
+//                .password(passwordEncoder.encode("password"))
+//                .name("Katt")
+//                .roles((Set<Role>) Role.builder().name(ERole.ROLE_ADMIN).build())
+//                .build();
+//
+//        userRepository.save(CocktailAppUser.builder()
+//                .email("gini@cocktail.com")
+//                .password(passwordEncoder.encode("password"))
+//                .name("Gini")
+//                .roles((Set<Role>) Role.builder().name(ERole.ROLE_USER).build())
+//                .build()
+//        );
+        userRepository.save(dori);
 
         log.debug("printing all users...");
-        userRepository.findAll().forEach(u -> log.debug(" ToDo App users :" + u.toString()));
+//        userRepository.findAll().forEach(u -> log.debug(" ToDo App users :" + u.toString()));
     }
 }
