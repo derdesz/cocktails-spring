@@ -23,10 +23,10 @@ public class JwtUtils {
     @Value("${cocktail.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-//    @PostConstruct
-//    protected void init() {
-//        jwtSecret = Base64.getEncoder().encodeToString(jwtSecret.getBytes());
-//    }
+    @PostConstruct
+    protected void init() {
+        jwtSecret = Base64.getEncoder().encodeToString(jwtSecret.getBytes());
+    }
 
     public String generateJwtToken(Authentication authentication) {
 
