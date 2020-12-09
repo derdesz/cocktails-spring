@@ -11,10 +11,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 @Component
 @Slf4j
@@ -38,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
                 .email("georgia@cocktail.com")
                 .password(passwordEncoder.encode("password"))
                 .name("Georgia")
-                .roles(Collections.singletonList(admin))
+                .roles(new HashSet<Role>(Collections.singleton(new Role(ERole.ROLE_ADMIN))))
                 .build();
 
 
