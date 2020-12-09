@@ -4,14 +4,21 @@ package com.codecool.cocktailsspring.controller;
 import com.codecool.cocktailsspring.entity.CocktailAppUser;
 import com.codecool.cocktailsspring.model.ERole;
 import com.codecool.cocktailsspring.model.Role;
+import com.codecool.cocktailsspring.payload.request.LoginRequest;
 import com.codecool.cocktailsspring.payload.request.SignupRequest;
+import com.codecool.cocktailsspring.payload.response.JwtResponse;
 import com.codecool.cocktailsspring.payload.response.MessageResponse;
 import com.codecool.cocktailsspring.repository.RoleRepository;
 import com.codecool.cocktailsspring.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.codecool.cocktailsspring.security.JwtUtils;
+import com.codecool.cocktailsspring.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AuthController {
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @Autowired
     UserRepository userRepository;
@@ -33,6 +44,9 @@ public class AuthController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     @PostMapping("/registration")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -78,5 +92,27 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles));
     }
 }
