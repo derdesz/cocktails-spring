@@ -12,16 +12,17 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${cocktail.app.jwtSecret}")
-    private String jwtSecret;
+//    @Value("${cocktail.app.jwtSecret}")
+    private String jwtSecret = "SodaliciousSecretKey";
 
-    @Value("${cocktail.app.jwtExpirationMs}")
-    private int jwtExpirationMs;
+//    @Value("${cocktail.app.jwtExpirationMs}")
+    private int jwtExpirationMs = 86400000;
 
     @PostConstruct
     protected void init() {
@@ -37,6 +38,22 @@ public class JwtUtils {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
+    public String generateJwtToken(String username, List<String> roles) {
+        // Add a custom field to the token
+        Claims claims = Jwts.claims().setSubject(username);
+        claims.put("roles", roles);
+
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + jwtExpirationMs);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(validity)
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();
     }
 
