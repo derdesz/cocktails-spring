@@ -116,4 +116,9 @@ public class AuthController {
                 userDetails.getEmail(),
                 roles));
     }
+
+    @GetMapping("/login_error")
+    public ResponseEntity loginError(){
+        return ResponseEntity.status(403).build();
+    }
 }
