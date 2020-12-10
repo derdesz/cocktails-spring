@@ -22,6 +22,10 @@ public class CocktailAuthenticationSuccessHandler extends SimpleUrlAuthenticatio
         jwtUtils.init();
     }
 
+    protected void handle(HttpServletRequest request, HttpServletResponse response,
+                          Authentication authentication) throws IOException, ServletException {
+    }
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         List<String> roles = authentication.getAuthorities()
