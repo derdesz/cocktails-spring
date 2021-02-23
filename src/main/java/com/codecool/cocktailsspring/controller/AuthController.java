@@ -1,6 +1,5 @@
 package com.codecool.cocktailsspring.controller;
 
-
 import com.codecool.cocktailsspring.entity.CocktailAppUser;
 import com.codecool.cocktailsspring.model.ERole;
 import com.codecool.cocktailsspring.model.Role;
@@ -14,6 +13,7 @@ import com.codecool.cocktailsspring.security.JwtUtils;
 import com.codecool.cocktailsspring.security.UserDetailsImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,13 +25,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.*;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @Slf4j
 public class AuthController {
+
     @Autowired
     AuthenticationManager authenticationManager;
 
