@@ -50,4 +50,10 @@ public class CocktailByIdControllerTest {
         NewCocktail foundCocktail = cocktailByIdController.getCocktailById("666666");
         Assertions.assertEquals(expectedCocktail, foundCocktail);
     }
+
+    @Test
+    public void testGetCocktailByNonExistentId() {
+        NewCocktail foundCocktail = cocktailByIdController.getCocktailById("1111");
+        Assertions.assertNull(foundCocktail);
+    }
 }
