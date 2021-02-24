@@ -3,6 +3,7 @@ package com.codecool.cocktailsspring.controller;
 import com.codecool.cocktailsspring.model.NewCocktail;
 import com.codecool.cocktailsspring.repository.CocktailRepository;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,18 +12,42 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class CocktailByIdControllerTest {
+    NewCocktail expectedCocktail = new NewCocktail();
+    NewCocktail anotherCocktail = new NewCocktail();
+
+    @Before
+    public void init() {
+        expectedCocktail.setIdDrink("666666");
+        expectedCocktail.setStrDrink("GGGGGG");
+        expectedCocktail.setStrAlcoholic("alcoholic");
+        expectedCocktail.setStrInstructions("mix some happiness with fun");
+        expectedCocktail.setAllIngredients(new ArrayList<String>(Collections.singleton("happiness, fun")));
+        cocktailRepository.save(expectedCocktail);
+
+        anotherCocktail.setIdDrink("888888");
+        anotherCocktail.setStrDrink("XXXXXXX");
+        anotherCocktail.setStrAlcoholic("alcoholic");
+        anotherCocktail.setStrInstructions("mix some sunshine with fun");
+        anotherCocktail.setAllIngredients(new ArrayList<String>(Collections.singleton("sunshine, fun")));
+        cocktailRepository.save(anotherCocktail);
+    }
 
     @Autowired
     CocktailRepository cocktailRepository;
 
+    @Autowired
+    CocktailByIdController cocktailByIdController;
+
     @Test
     public void testGetCocktailById() {
-        NewCocktail foundCocktail = cocktailRepository.findCocktailByIdDrink("11408");
-        String expectedCocktail = "NewCocktail(idDrink=11408, strDrink=Gin Daisy, strAlcoholic=Alcoholic, strInstructions=In a shaker half-filled with ice cubes, combine the gin, lemon juice, sugar, and grenadine. Shake well. Pour into an old-fashioned glass and garnish with the cherry and the orange slice., allIngredients=[2 oz  Gin, 1 oz  Lemon juice, 1/2 tsp superfine  Sugar, 1/2 tsp  Grenadine, 1  Maraschino cherry, 1  Orange], strDrinkThumb=https://www.thecocktaildb.com/images/media/drink/z6e22f1582581155.jpg)";
-        Assertions.assertEquals(expectedCocktail, foundCocktail.toString());
+        NewCocktail foundCocktail = cocktailByIdController.getCocktailById("666666");
+        Assertions.assertEquals(expectedCocktail, foundCocktail);
     }
 }
