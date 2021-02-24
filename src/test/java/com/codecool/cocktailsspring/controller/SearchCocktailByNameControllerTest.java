@@ -63,4 +63,10 @@ public class SearchCocktailByNameControllerTest {
         Assertions.assertEquals(1, foundCocktails.size());
         Assertions.assertEquals("XXXXXXX", foundCocktails.get(0).getStrDrink());
     }
+
+    @Test
+    public void TestSearchCocktailByInvalidName() {
+        List<NewCocktail> foundCocktails = searchCocktailByNameController.searchCocktailByName("Nothing");
+        Assertions.assertEquals(0, foundCocktails.size());
+    }
 }
