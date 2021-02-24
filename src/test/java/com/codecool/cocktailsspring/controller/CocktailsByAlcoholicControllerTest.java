@@ -66,4 +66,10 @@ public class CocktailsByAlcoholicControllerTest {
         Assertions.assertEquals(expectedCocktailList, foundCocktails);
         Assertions.assertEquals(1, foundCocktails.size());
     }
+
+    @Test
+    public void testGetCocktailsBySpiritOnInvalidParameter(){
+        List<NewCocktail> cocktails = cocktailsByAlcoholicController.getCocktailsBySpirit("invalid");
+        assertEquals(0, cocktails.size());
+    }
 }
