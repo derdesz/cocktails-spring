@@ -62,4 +62,10 @@ public class SearchCocktailByIngredientControllerTest {
         List<NewCocktail> cocktails = searchCocktailByIngredientController.findCocktailByStrIngredient("fun");
         assertEquals(2, cocktails.size());
     }
+
+    @Test
+    public void testGetCocktailsBySpiritOnInvalidParameter() {
+        List<NewCocktail> invalidCocktailList = searchCocktailByIngredientController.findCocktailByStrIngredient("xxxx");
+        assertEquals(0, invalidCocktailList.size());
+    }
 }
