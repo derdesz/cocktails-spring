@@ -61,4 +61,10 @@ public class CocktailsBySpiritControllerTest {
         List<NewCocktail> cocktails = cocktailsBySpiritController.getCocktailsBySpirit("fun");
         assertEquals(2, cocktails.size());
     }
+
+    @Test
+    public void testGetCocktailsBySpiritOnInvalidParameter() {
+        List<NewCocktail> invalidCocktailList = cocktailsBySpiritController.getCocktailsBySpirit("xxxx");
+        assertEquals(0, invalidCocktailList.size());
+    }
 }
