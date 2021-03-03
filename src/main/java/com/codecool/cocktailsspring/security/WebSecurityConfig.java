@@ -53,8 +53,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
-                .authorizeRequests().antMatchers("/**").permitAll()
-                .antMatchers("/**").permitAll()
+                .authorizeRequests()
+                .antMatchers(
+                        "/favorites/{cocktail_id}",
+                        "/favorites",
+                        "/add-cocktail",
+                        "/save-new-cocktail")
+                .access("hasAnyAuthority('ROLE_USER')")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
@@ -62,7 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login_error")
                 .defaultSuccessUrl("/", true)
                 .successHandler(new CocktailAuthenticationSuccessHandler())
-                .permitAll()
                 .and()
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
