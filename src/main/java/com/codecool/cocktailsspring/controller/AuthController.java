@@ -1,6 +1,5 @@
 package com.codecool.cocktailsspring.controller;
 
-
 import com.codecool.cocktailsspring.entity.CocktailAppUser;
 import com.codecool.cocktailsspring.model.ERole;
 import com.codecool.cocktailsspring.model.Role;
@@ -21,7 +20,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -32,10 +30,10 @@ import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @Slf4j
 public class AuthController {
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -78,14 +76,10 @@ public class AuthController {
             strRoles.forEach(role -> {
                 switch (role.toString()) {
                     case "admin":
-//                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(new Role(ERole.ROLE_ADMIN));
 
                         break;
                     default:
-//                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-//                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(new Role(ERole.ROLE_USER));
                 }
             });

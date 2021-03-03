@@ -15,7 +15,6 @@ public class SaveCocktailRecipe {
     @Autowired
     CocktailRepository cocktailRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/save-new-cocktail")
     public void createCocktail(@RequestBody NewCocktail newCocktail) {
         cocktailDBService.createCocktail(newCocktail);

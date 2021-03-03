@@ -22,7 +22,6 @@ public class CocktailsSpringApplication {
     public CommandLineRunner init(){
         return args -> {
             cocktailDBService.importJSONData();
-//            cocktailDBService.importCocktailData();
         };
     }
 }
