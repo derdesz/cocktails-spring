@@ -42,4 +42,25 @@ public class FavoriteController {
         }
     }
 
+    @GetMapping("/favorites")
+    public List<NewCocktail> getFavouriteCocktails(){
+        System.out.println("Favorite");
+        List<NewCocktail> foundCocktails = new ArrayList<>();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
+        if(userId != null){
+            Optional<CocktailAppUser> user = userRepository.findById(userId);
+            if (user.isPresent()) {
+                if (!user.get().getFavouriteCocktailIds().isEmpty()) {
+                    Set<Long> foundIds = userRepository.findById(userId).get().getFavouriteCocktailIds();
+                    for (Long foundId : foundIds) {
+                        foundCocktails.add(cocktailRepository.findCocktailByIdDrink(foundId.toString()));
+                        System.out.println(cocktailRepository.findCocktailByIdDrink(foundId.toString()));
+                    }
+                    return foundCocktails;
+                }
+            }
+        }
+        return null;
+    }
 }
