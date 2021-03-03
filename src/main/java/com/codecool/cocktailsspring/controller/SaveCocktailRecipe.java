@@ -19,4 +19,8 @@ public class SaveCocktailRecipe {
     public void createCocktail(@RequestBody NewCocktail newCocktail) {
         cocktailDBService.createCocktail(newCocktail);
     }
+
+    @GetMapping("/add-cocktail")
+    public void addCocktail() {
+    }
 }
