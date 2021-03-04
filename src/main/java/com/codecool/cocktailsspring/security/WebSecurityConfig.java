@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/favorites/{cocktail_id}",
                         "/favorites",
                         "/add-cocktail",
-                        "/save-new-cocktail")
+                        "/save-new-cocktail",
+                        "/is-favorite/{cocktail_id}")
                 .access("hasAnyAuthority('ROLE_USER')")
                 .anyRequest().permitAll()
                 .and()
