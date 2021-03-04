@@ -29,7 +29,7 @@ public class FavoriteController {
         Long cocktailId = Long.parseLong(cocktailIdStr);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
-        if(userId != null){
+        if (userId != null) {
             Optional<CocktailAppUser> user = userRepository.findById(userId);
             if (user.isPresent()) {
                 if (user.get().getFavouriteCocktailIds().contains(cocktailId)) {
@@ -43,12 +43,14 @@ public class FavoriteController {
     }
 
     @GetMapping("/favorites")
-    public List<NewCocktail> getFavouriteCocktails(){
+    public List<NewCocktail> getFavouriteCocktails() {
         System.out.println("Favorite");
         List<NewCocktail> foundCocktails = new ArrayList<>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getPrincipal());
+
         Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
-        if(userId != null){
+        if (userId != null) {
             Optional<CocktailAppUser> user = userRepository.findById(userId);
             if (user.isPresent()) {
                 if (!user.get().getFavouriteCocktailIds().isEmpty()) {
@@ -63,4 +65,23 @@ public class FavoriteController {
         }
         return null;
     }
+
+    @GetMapping("/is-favorite/{cocktail_id}")
+    public String isFavorite(@PathVariable("cocktail_id") String cocktail_id) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
+
+        if (userId != null) {
+            Optional<CocktailAppUser> user = userRepository.findById(userId);
+            if (user.isPresent()) {
+                Set<Long> foundIds = user.get().getFavouriteCocktailIds();
+                if(foundIds.contains(cocktail_id)){
+                    return "true";
+                };
+            }
+        }
+        return "false";
+    }
+
 }
