@@ -71,12 +71,12 @@ public class FavoriteController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long userId = ((UserDetailsImpl) authentication.getPrincipal()).getId();
-
+        Long cocktailId = Long.parseLong(cocktail_id);
         if (userId != null) {
             Optional<CocktailAppUser> user = userRepository.findById(userId);
             if (user.isPresent()) {
                 Set<Long> foundIds = user.get().getFavouriteCocktailIds();
-                if(foundIds.contains(cocktail_id)){
+                if(foundIds.contains(cocktailId)){
                     return "true";
                 };
             }
