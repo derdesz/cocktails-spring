@@ -55,11 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/favorites/{cocktail_id}",
+                        "/favorites/*",
                         "/favorites",
                         "/add-cocktail",
                         "/save-new-cocktail",
-                        "/is-favorite/{cocktail_id}")
+                        "/is-favorite/*")
                 .access("hasAnyAuthority('ROLE_USER')")
                 .anyRequest().permitAll()
                 .and()
